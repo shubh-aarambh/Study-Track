@@ -1,0 +1,10 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: {name: studytrack-broken-image, namespace: studytrack}
+spec:
+  replicas: 1
+  selector: {matchLabels: {app: broken-image}}
+  template:
+    metadata: {labels: {app: broken-image}}
+    spec:
+      containers: [{name: backend, image: ghcr.io/example/studytrack-backend:does-not-exist}]
