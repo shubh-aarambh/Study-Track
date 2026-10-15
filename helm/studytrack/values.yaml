@@ -1,0 +1,28 @@
+frontend:
+  image: ghcr.io/YOUR_ORG/studytrack-frontend
+  tag: latest
+backend:
+  image: ghcr.io/YOUR_ORG/studytrack-backend
+  tag: latest
+replicaCount: 2
+namespace: studytrack
+imagePullSecrets: []
+postgres:
+  host: studytrack-postgres
+  database: studytrack
+  username: studytrack
+  password: studytrack
+ingress:
+  enabled: false
+  host: studytrack.local
+hpa:
+  enabled: true
+  minReplicas: 2
+  maxReplicas: 6
+  targetCPUUtilizationPercentage: 60
+resources:
+  requests: {cpu: 100m, memory: 256Mi}
+  limits: {cpu: 500m, memory: 512Mi}
+monitoring:
+  serviceMonitor:
+    enabled: true

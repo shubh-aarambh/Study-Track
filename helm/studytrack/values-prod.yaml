@@ -1,0 +1,10 @@
+frontend:
+  image: ghcr.io/YOUR_ORG/studytrack-frontend
+backend:
+  image: ghcr.io/YOUR_ORG/studytrack-backend
+replicaCount: 2
+ingress:
+  enabled: true
+  host: studytrack.example.com
+hpa:
+  enabled: true

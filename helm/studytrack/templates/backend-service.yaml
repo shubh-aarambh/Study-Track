@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "studytrack.fullname" . }}-backend
+  labels: {app: studytrack-backend}
+spec:
+  selector: {app: studytrack-backend}
+  ports:
+    - port: 8000
+      targetPort: 8000
+      name: http
