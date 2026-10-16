@@ -32,6 +32,7 @@ spec:
         - {name: POSTGRES_PASSWORD, valueFrom: {secretKeyRef: {name: studytrack-postgres, key: password}}}
         readinessProbe: {exec: {command: ["sh","-c","pg_isready -U $POSTGRES_USER -d $POSTGRES_DB"]}, initialDelaySeconds: 5, periodSeconds: 10}
         volumeMounts: [{name: data, mountPath: /var/lib/postgresql/data}]
+{{- if .Values.postgres.persistence.enabled }}
       volumes: [{name: data, persistentVolumeClaim: {claimName: studytrack-postgres-data}}]
 ---
 apiVersion: v1
@@ -39,4 +40,8 @@ kind: PersistentVolumeClaim
 metadata: {name: studytrack-postgres-data}
 spec:
   accessModes: [ReadWriteOnce]
-  resources: {requests: {storage: 5Gi}}
+  resources: {requests: {storage: {{ .Values.postgres.persistence.size | default "5Gi" }}}}
+{{- else }}
+      volumes: [{name: data, emptyDir: {}}]
+{{- end }}
+

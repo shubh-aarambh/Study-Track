@@ -14,6 +14,8 @@ dist/
 .terraform/
 *.tfstate
 *.tfstate.*
+*.tfplan
+tfplan
 # Editors / OS / misc
 .idea/
 .vscode/

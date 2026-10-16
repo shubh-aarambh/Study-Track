@@ -5,7 +5,9 @@ metadata: {name: studytrack}
 spec:
   ingressClassName: nginx
   rules:
-  - host: {{ .Values.ingress.host }}
+  - {{- if .Values.ingress.host }}
+    host: {{ .Values.ingress.host }}
+    {{- end }}
     http:
       paths:
       - {path: /api, pathType: Prefix, backend: {service: {name: studytrack-backend, port: {number: 8000}}}}

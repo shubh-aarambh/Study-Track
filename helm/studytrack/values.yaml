@@ -1,20 +1,23 @@
 frontend:
   image: ghcr.io/shubh-aarambh/studytrack-frontend
-  tag: latest
+  tag: 505657e21f0b31e583f007248b6b44e1fbaa05ca
 backend:
   image: ghcr.io/shubh-aarambh/studytrack-backend
-  tag: latest
+  tag: 505657e21f0b31e583f007248b6b44e1fbaa05ca
 replicaCount: 2
 namespace: studytrack
-imagePullSecrets: []
+imagePullSecrets:
+  - name: ghcr-secret
 postgres:
   host: studytrack-postgres
   database: studytrack
   username: studytrack
   password: studytrack
+  persistence:
+    enabled: false
 ingress:
-  enabled: false
-  host: studytrack.local
+  enabled: true
+  host: ""
 hpa:
   enabled: true
   minReplicas: 2

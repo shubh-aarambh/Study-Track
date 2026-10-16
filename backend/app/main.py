@@ -26,7 +26,7 @@ Instrumentator().instrument(app).expose(app, endpoint="/metrics")
 
 @app.get("/")
 def root():
-    return {"service": settings.app_name, "version": "1.0.0", "docs": "/docs"}
+    return {"service": settings.app_name, "version": "1.1.0", "docs": "/docs", "status": "operational"}
 
 
 @app.get("/health")
