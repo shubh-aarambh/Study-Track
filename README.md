@@ -1,159 +1,309 @@
-# StudyTrack — DevOps Final Capstone
+# StudyTrack & TaskBoard — DevOps Final Capstone
 
-StudyTrack is a SaaS-style **assignment and deadline tracker for students**. Students add assignments per subject, set a due date and priority, track progress (0–100 %), and see KPIs for total / in-progress / submitted / **overdue** work.
+StudyTrack & TaskBoard is a cloud-native SaaS **student assignment and deadline management system** built for the **Session 21 DevOps Final Capstone Project**. 
 
-The point of the project is the DevOps pipeline around the app: it travels from a laptop to a monitored Kubernetes cluster.
+Students can track assignments and tasks per subject, set deadlines and priorities, monitor real-time completion progress (0–100%), and view operational KPIs for total, in-progress, submitted, and overdue work.
+
+The core focus of this project is the comprehensive end-to-end DevOps automation pipeline:
+```text
+Application → Git Commit → CI Pipeline → Docker Build → Trivy Security Scan → GHCR Registry
+            → Terraform AWS Infrastructure → Amazon EKS Kubernetes → Helm Deployment
+            → NGINX Ingress Routing → Horizontal Pod Autoscaling (HPA)
+            → Prometheus & Grafana Monitoring → Live Failure Troubleshooting
+```
+
+---
+
+## 🎯 Capstone Deliverables & Demo Assets
+
+- 📊 **PowerPoint Presentation Deck**: [`demo/StudyTrack_DevOps_Capstone_Presentation.pptx`](demo/StudyTrack_DevOps_Capstone_Presentation.pptx)  
+  *Comprehensive 9-slide technical and executive slide deck with embedded screenshots and architecture diagrams.*
+- 🎥 **Full Working Application & API Demo Video**: [`demo/studytrack_full_demo.webp`](demo/studytrack_full_demo.webp)  
+  *High-definition video recording of the interactive TaskBoard UI and FastAPI Swagger documentation.*
+- 🌐 **Live AWS Ingress ELB Demo Video**: [`demo/studytrack_live_ingress_demo.webp`](demo/studytrack_live_ingress_demo.webp)  
+  *Video recording of live access across the internet via the AWS Elastic Load Balancer Ingress hostname.*
+- 📈 **Prometheus & Grafana Observability Video**: [`demo/studytrack_monitoring_demo.webp`](demo/studytrack_monitoring_demo.webp)  
+  *Video recording of Prometheus query console and Grafana telemetry dashboards.*
+- 📸 **Demo Screenshots Suite**: [`demo/screenshots/`](demo/screenshots/)  
+  *21 screenshots covering all 15 required demo criteria.*
+- 📘 **Dedicated Demo Walkthrough**: [`demo/README.md`](demo/README.md)
+
+---
+
+## 🚀 PART O — FINAL DEMO (15 Rubric Criteria)
+
+### 1. Application: Open TaskBoard and create a task
+- **Action**: Accessed the interactive TaskBoard dashboard, opened the task creation modal, submitted an assignment with title, subject, priority, and deadline.
+- **Verification**: Dashboard renders the new task card with live progress bar and recalculates KPI counters immediately.
+- **Evidence**:
+  - UI Overview: [`demo/screenshots/01-application-taskboard.png`](demo/screenshots/01-application-taskboard.png)
+  - Create Modal: [`demo/screenshots/01-create-task-modal.png`](demo/screenshots/01-create-task-modal.png)
+  - Active Task on Board: [`demo/screenshots/01-task-created-board.png`](demo/screenshots/01-task-created-board.png)
+  - Video Demonstration: [`demo/studytrack_full_demo.webp`](demo/studytrack_full_demo.webp)
+
+![TaskBoard Dashboard](demo/screenshots/01-task-created-board.png)
+
+---
+
+### 2. API: FastAPI Swagger (`/docs`) — Full CRUD
+- **Action**: Opened FastAPI interactive Swagger UI at `/docs`.
+- **Endpoints Demonstrated**:
+  - `GET /api/assignments`: Read all assignments (with optional `?subject=` filter)
+  - `POST /api/assignments`: Create a new assignment (`201 Created`)
+  - `GET /api/assignments/{id}`: Read single assignment details
+  - `PUT /api/assignments/{id}`: Update progress / status
+  - `DELETE /api/assignments/{id}`: Delete an assignment
+  - `GET /health` & `GET /ready`: Health check & database connection probe
+  - `GET /metrics`: Prometheus metrics scrape target
+- **Evidence**:
+  - Swagger Documentation: [`demo/screenshots/02-fastapi-swagger-docs.png`](demo/screenshots/02-fastapi-swagger-docs.png)
+  - API Execution Response: [`demo/screenshots/02-swagger-api-execute.png`](demo/screenshots/02-swagger-api-execute.png)
+
+![Swagger UI](demo/screenshots/02-fastapi-swagger-docs.png)
+
+---
+
+### 3. Database: PostgreSQL Tasks Table
+- **Action**: Queried the PostgreSQL container directly in the Kubernetes cluster using `kubectl exec`.
+- **Command**:
+  ```bash
+  kubectl exec deployment/studytrack-postgres -n taskboard -- psql -U studytrack -d studytrack -c "SELECT id, title, subject, priority, status, progress, created_at FROM assignments;"
+  ```
+- **Output**:
+  ```text
+   id |                  title                   |   subject    | priority | status  | progress |          created_at           
+  ----+------------------------------------------+--------------+----------+---------+----------+-------------------------------
+    1 | EKS Ingress Live Deployment Verification | Cloud DevOps | HIGH     | PENDING |        0 | 2026-10-16 15:56:57.725742+00
+    2 | Production Ingress & Autoscaling Valid.. | DevOps       | HIGH     | PENDING |        0 | 2026-10-16 16:03:12.418291+00
+  (2 rows)
+  ```
+- **Evidence**: [`demo/screenshots/03-postgresql-database-table.png`](demo/screenshots/03-postgresql-database-table.png)
+
+![PostgreSQL Tasks](demo/screenshots/03-postgresql-database-table.png)
+
+---
+
+### 4. Git: Application Code Change & Commit
+- **Action**: Modified `backend/app/main.py` root endpoint with version `1.1.0` and operational health status, committed changes on branch `main`.
+- **Command**:
+  ```bash
+  git log -n 4 --oneline --decorate
+  ```
+- **Output**:
+  ```text
+  20390cc (HEAD -> main, origin/main) feat(capstone): deploy to AWS EKS with Ingress, HPA, Prometheus, add demo suite and presentation
+  505657e fix(helm): update default image repository to shubh-aarambh on GHCR
+  62bcf0d docs: add troubleshooting runbook and embed evidence screenshots in README
+  372bcf8 fix(scripts): ensure System.Net.Http assembly load in PowerShell load-test script
+  ```
+- **Evidence**: [`demo/screenshots/04-git-commit-history.png`](demo/screenshots/04-git-commit-history.png)
+
+![Git History](demo/screenshots/04-git-commit-history.png)
+
+---
+
+### 5. CI: Push to GitHub & Automated Tests Running
+- **Action**: Pushed commit to remote repository `shubh-aarambh/studytrack-devops-capstone`. GitHub Actions pipeline triggered automatically.
+- **Workflow Verification**:
+  - `test` job: 12 unit & integration tests executed via `pytest` (**All 12 passed in 0.50s**), followed by Vite production bundling.
+  - `build-scan-push` job: Multi-stage Docker builds and Trivy scanning.
+  - `deploy` job: Helm deployment validation.
+- **Evidence**: [`demo/screenshots/05-ci-pipeline-tests.png`](demo/screenshots/05-ci-pipeline-tests.png)
+
+![GitHub Actions CI](demo/screenshots/05-ci-pipeline-tests.png)
+
+---
+
+### 6. Docker: Two Multi-Stage Container Images
+- **Action**: Containerized backend and frontend using multi-stage Docker builds.
+  - Backend: `python:3.12-slim` base, non-root user execution (~142 MB).
+  - Frontend: `node:22-alpine` builder + `nginx:alpine` unprivileged server (~28 MB).
+- **Evidence**: [`demo/screenshots/06-docker-images-build.png`](demo/screenshots/06-docker-images-build.png)
+
+![Docker Build](demo/screenshots/06-docker-images-build.png)
+
+---
+
+### 7. Security: Trivy Container Vulnerability Scan
+- **Action**: Scanned both container images during CI using `aquasecurity/trivy-action@v0.36.0` with `--severity HIGH,CRITICAL --ignore-unfixed`.
+- **Results**:
+  - `ghcr.io/shubh-aarambh/studytrack-backend`: **0 Vulnerabilities** (HIGH: 0, CRITICAL: 0)
+  - `ghcr.io/shubh-aarambh/studytrack-frontend`: **0 Vulnerabilities** (HIGH: 0, CRITICAL: 0)
+- **Evidence**: [`demo/screenshots/07-trivy-security-scan.png`](demo/screenshots/07-trivy-security-scan.png)
+
+![Trivy Scan](demo/screenshots/07-trivy-security-scan.png)
+
+---
+
+### 8. Registry: Images Published in GHCR
+- **Action**: Published immutable container artifacts to GitHub Container Registry (`ghcr.io`).
+  - `ghcr.io/shubh-aarambh/studytrack-backend:20390cc701f66785c8196c9b80587c061ea64d88`
+  - `ghcr.io/shubh-aarambh/studytrack-frontend:20390cc701f66785c8196c9b80587c061ea64d88`
+- **Evidence**: [`demo/screenshots/08-ghcr-container-registry.png`](demo/screenshots/08-ghcr-container-registry.png)
+
+![GHCR Registry](demo/screenshots/08-ghcr-container-registry.png)
+
+---
+
+### 9. Terraform: AWS Infrastructure as Code
+- **Action**: Provisioned AWS infrastructure using Terraform in `ap-south-1`:
+  - AWS VPC: 2 Public subnets, 2 Private subnets, NAT Gateway, Internet Gateway (`10.20.0.0/16`)
+  - Amazon EKS 1.31: Control plane with OIDC provider
+  - EKS Managed Node Group: Free Tier compatible `t3.small` worker nodes
+  - KMS Encryption: Envelope encryption enabled for Kubernetes Secrets
+  - IAM: Granular RBAC ClusterAdminPolicy access entries
+- **Evidence**: [`demo/screenshots/09-terraform-infrastructure.png`](demo/screenshots/09-terraform-infrastructure.png)
+
+![Terraform IaC](demo/screenshots/09-terraform-infrastructure.png)
+
+---
+
+### 10. Kubernetes: Pods and Services in `taskboard` Namespace
+- **Command**:
+  ```bash
+  kubectl get pods -n taskboard
+  kubectl get svc -n taskboard
+  ```
+- **Output**:
+  ```text
+  NAME                                   READY   STATUS    RESTARTS   AGE
+  studytrack-backend-5f69d56d8b-l5ctr    1/1     Running   0          3m
+  studytrack-backend-5f69d56d8b-xwsfj    1/1     Running   0          3m
+  studytrack-frontend-6c6595ffd-9s7qj    1/1     Running   0          3m
+  studytrack-frontend-6c6595ffd-pz7ct    1/1     Running   0          3m
+  studytrack-postgres-54bdc96cc9-tg8zf   1/1     Running   0          36m
+
+  NAME                  TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)    AGE
+  studytrack-backend    ClusterIP   172.20.81.55   <none>        8000/TCP   36m
+  studytrack-frontend   ClusterIP   172.20.85.37   <none>        80/TCP     36m
+  studytrack-postgres   ClusterIP   172.20.55.50   <none>        5432/TCP   36m
+  ```
+- **Evidence**: [`demo/screenshots/10-kubernetes-pods-services.png`](demo/screenshots/10-kubernetes-pods-services.png)
+
+![Kubernetes Pods & Services](demo/screenshots/10-kubernetes-pods-services.png)
+
+---
+
+### 11. Helm: Releases in `taskboard` Namespace
+- **Command**:
+  ```bash
+  helm list -n taskboard
+  ```
+- **Output**:
+  ```text
+  NAME     	NAMESPACE	REVISION	UPDATED                              	STATUS  	CHART           	APP VERSION
+  taskboard	taskboard	4       	2026-10-16 21:50:45.3910242 +0530 IST	deployed	studytrack-1.0.0	1.0.0      
+  ```
+- **Evidence**: [`demo/screenshots/11-helm-release-taskboard.png`](demo/screenshots/11-helm-release-taskboard.png)
+
+![Helm Release](demo/screenshots/11-helm-release-taskboard.png)
+
+---
+
+### 12. Ingress: Live Access via Ingress Hostname & AWS ELB
+- **Action**: NGINX Ingress Controller exposed through AWS Elastic Load Balancer (ELB).
+- **Public Ingress Hostname**:
+  `http://a554166002e3d4c6bbb0bde1c641c9c1-147430934.ap-south-1.elb.amazonaws.com/`
+- **Routing Rules**:
+  - `/api` → `studytrack-backend:8000`
+  - `/` → `studytrack-frontend:80`
+- **Live HTTP Check**:
+  ```bash
+  curl http://a554166002e3d4c6bbb0bde1c641c9c1-147430934.ap-south-1.elb.amazonaws.com/api/health
+  # {"status": "UP"}
+  ```
+- **Evidence**:
+  - Live Ingress App: [`demo/screenshots/12-ingress-live-app.png`](demo/screenshots/12-ingress-live-app.png)
+  - Live Ingress Dashboard: [`demo/screenshots/12-ingress-live-dashboard.png`](demo/screenshots/12-ingress-live-dashboard.png)
+  - Video Demonstration: [`demo/studytrack_live_ingress_demo.webp`](demo/studytrack_live_ingress_demo.webp)
+
+![Live Ingress](demo/screenshots/12-ingress-live-app.png)
+
+---
+
+### 13. HPA: Horizontal Pod Autoscaler
+- **Command**:
+  ```bash
+  kubectl get hpa -n taskboard
+  ```
+- **Output**:
+  ```text
+  NAME                 REFERENCE                       TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
+  studytrack-backend   Deployment/studytrack-backend   cpu: 3%/60%   2         6         2          38m
+  ```
+- **Load Generation**: Executed concurrent load test script:
+  ```powershell
+  .\scripts\load-test.ps1 -Url http://a554166002e3d4c6bbb0bde1c641c9c1-147430934.ap-south-1.elb.amazonaws.com/api/health -Requests 200 -Concurrency 10
+  # Load test completed in 1.85s (~108.2 req/sec)
+  ```
+- **Evidence**: [`demo/screenshots/13-hpa-horizontal-pod-autoscaler.png`](demo/screenshots/13-hpa-horizontal-pod-autoscaler.png)
+
+![HPA Autoscaler](demo/screenshots/13-hpa-horizontal-pod-autoscaler.png)
+
+---
+
+### 14. Monitoring: Prometheus & Grafana
+- **Action**: Deployed `kube-prometheus-stack` into namespace `monitoring`.
+- **Prometheus UI**: Verified scrape targets and executed PromQL expressions (`up`).
+- **Grafana Dashboards**: Monitored cluster compute resources, pod CPU/memory utilization, and request rates.
+- **Evidence**:
+  - Prometheus Query: [`demo/screenshots/14-prometheus-query.png`](demo/screenshots/14-prometheus-query.png)
+  - Prometheus Targets: [`demo/screenshots/14-prometheus-targets.png`](demo/screenshots/14-prometheus-targets.png)
+  - Grafana Dashboard: [`demo/screenshots/14-grafana-cluster-dashboard.png`](demo/screenshots/14-grafana-cluster-dashboard.png)
+  - Video Demonstration: [`demo/studytrack_monitoring_demo.webp`](demo/studytrack_monitoring_demo.webp)
+
+![Grafana Monitoring](demo/screenshots/14-grafana-cluster-dashboard.png)
+
+---
+
+### 15. Failure Simulation & Live Troubleshooting
+- **Scenario**: Injected a service disruption by applying a Service with an unmatched selector `app: label-that-does-not-exist`.
+- **Diagnosis**: Observed `ENDPOINTS <none>` on `broken-service`.
+- **Remediation**: Patched selector to match running pods (`app: studytrack-backend`).
+- **Resolution**: Endpoints immediately recovered with active pod IPs (`10.20.1.164:8000, 10.20.2.151:8000`).
+- **Evidence**: [`demo/screenshots/15-live-troubleshooting-remediation.png`](demo/screenshots/15-live-troubleshooting-remediation.png)
+
+![Live Troubleshooting](demo/screenshots/15-live-troubleshooting-remediation.png)
+
+---
+
+## Tech Stack Overview
+
+| Layer | Technology | Purpose |
+|:---|:---|:---|
+| **Frontend** | React, Vite, Vanilla CSS | Responsive Glassmorphism UI, client routing |
+| **Backend** | FastAPI, SQLAlchemy 2, Alembic, Pydantic v2 | High-performance RESTful APIs, OpenAPI docs |
+| **Database** | PostgreSQL 16 | Relational data persistence |
+| **Testing** | Pytest, StaticPool SQLite | Isolated unit and integration testing |
+| **Containerization** | Docker, NGINX Alpine | Multi-stage unprivileged containers (<150 MB) |
+| **CI/CD** | GitHub Actions | Automated build, test, scan, and deploy pipeline |
+| **Security** | Aqua Security Trivy | Static container vulnerability scanning (0 CVEs) |
+| **Registry** | GitHub Container Registry (GHCR) | Secure OCI container image repository |
+| **IaC** | Terraform, AWS VPC & EKS Modules | Declarative cloud infrastructure provisioning |
+| **Cloud Provider** | AWS (ap-south-1) | VPC, NAT Gateway, EKS Cluster, ELB, KMS |
+| **Orchestration** | Kubernetes 1.31, Helm 3 | Declarative workload management and deployments |
+| **Ingress** | NGINX Ingress Controller, AWS ELB | Single entrypoint and path-based routing |
+| **Autoscaling** | Kubernetes HPA, Metrics Server | Dynamic CPU-based pod autoscaling (2–6 replicas) |
+| **Monitoring** | Prometheus, Grafana | Cluster and application telemetry, PromQL, dashboards |
+
+---
+
+## Repository Structure
 
 ```text
-Developer -> GitHub -> GitHub Actions (pytest, frontend build, docker build, Trivy, push to GHCR)
-          -> Terraform (AWS VPC + EKS) -> Helm (frontend, backend, postgres, ingress, HPA)
-          -> Prometheus -> Grafana
+├── .github/workflows/ci-cd.yml      # Automated GitHub Actions pipeline
+├── backend/                         # FastAPI application, models, schemas, and tests
+├── frontend/                        # React + Vite frontend and NGINX configuration
+├── helm/studytrack/                 # Helm chart manifests (deployments, svc, ingress, HPA)
+├── terraform/                       # Terraform AWS VPC and EKS infrastructure code
+├── monitoring/                      # Prometheus and Grafana Helm values
+├── troubleshooting/                 # Chaos engineering manifests and runbooks
+├── scripts/                         # Load testing scripts and automation tools
+├── demo/                            # Final presentation, demo videos, and screenshots
+│   ├── StudyTrack_DevOps_Capstone_Presentation.pptx
+│   ├── studytrack_full_demo.webp
+│   ├── studytrack_live_ingress_demo.webp
+│   ├── studytrack_monitoring_demo.webp
+│   └── screenshots/
+└── README.md
 ```
-
-## Tech stack
-
-| Layer | Tech |
-|-------|------|
-| Frontend | React + Vite, responsive CSS, served by unprivileged Nginx |
-| Backend | FastAPI, SQLAlchemy 2, Alembic, Pydantic v2 |
-| Database | PostgreSQL 16 |
-| Tests | pytest (in-memory SQLite, never the real DB) |
-| Containers | Docker multi-stage builds, non-root users, Docker Compose |
-| CI/CD | GitHub Actions, GHCR, image tag = Git commit SHA |
-| Security | Trivy (HIGH/CRITICAL fail the build) |
-| IaC | Terraform: AWS VPC + EKS |
-| Orchestration | Kubernetes, Helm, Ingress, HPA |
-| Observability | `/metrics`, Prometheus (ServiceMonitor), Grafana |
-
-## API
-
-```text
-GET    /                       service info
-GET    /health                 liveness
-GET    /ready                  readiness (checks DB)
-GET    /metrics                Prometheus metrics
-GET    /api/assignments        list (optional ?subject=)
-GET    /api/assignments/stats  KPI counters
-GET    /api/assignments/{id}
-POST   /api/assignments
-PUT    /api/assignments/{id}
-DELETE /api/assignments/{id}
-```
-
-Swagger UI: `http://localhost:8000/docs`.
-
-## Run locally
-
-### Docker Compose (recommended)
-```bash
-docker compose up --build
-# UI:      http://localhost:3000
-# API:     http://localhost:8000/docs
-# Metrics: http://localhost:8000/metrics
-docker compose down -v
-```
-
-### Without Docker (SQLite, for quick dev)
-```bash
-cd backend
-python -m venv .venv && source .venv/bin/activate   # Windows: .venv\Scripts\activate
-pip install -r requirements.txt
-export DATABASE_URL=sqlite:///./dev.db               # or a PostgreSQL URL
-alembic upgrade head
-uvicorn app.main:app --reload --port 8000
-
-cd ../frontend && npm install && npm run dev        # http://localhost:5173
-```
-
-## Tests
-```bash
-cd backend && pytest -v
-```
-12 tests cover health/ready/root, full CRUD, validation, filtering, stats (overdue logic) and `/metrics`. `tests/conftest.py` overrides the DB dependency with an in-memory SQLite database.
-
-## CI/CD (`.github/workflows/ci-cd.yml`)
-1. **test** — pytest (fails the pipeline) + frontend build
-2. **build-scan-push** — build both images, **Trivy** scan (HIGH/CRITICAL → fail), push to GHCR tagged with `${{ github.sha }}`
-3. **deploy** — `helm upgrade --install` with the SHA tag (needs the `KUBE_CONFIG_DATA` secret)
-
-## Infrastructure (Terraform)
-```bash
-cd terraform
-cp terraform.tfvars.example terraform.tfvars
-terraform init && terraform plan
-terraform apply
-aws eks update-kubeconfig --region ap-south-1 --name studytrack-eks
-# ... when finished, to avoid AWS cost:
-terraform destroy
-```
-Creates a VPC with two public and two private subnets, one NAT gateway, and an EKS cluster with a managed node group (2× t3.medium). **No credentials are committed.**
-
-## Kubernetes + Helm
-```bash
-kubectl apply -f k8s/namespace.yaml
-helm upgrade --install studytrack ./helm/studytrack -n studytrack \
-  --set frontend.image=ghcr.io/<owner>/studytrack-frontend --set frontend.tag=<sha> \
-  --set backend.image=ghcr.io/<owner>/studytrack-backend   --set backend.tag=<sha> \
-  --set ingress.enabled=true
-kubectl get pods,svc -n studytrack
-helm list -n studytrack
-```
-Backend and frontend run with 2 replicas behind ClusterIP services; Ingress routes `/` to the frontend and `/api` to the backend; an HPA scales the backend on CPU.
-
-## Monitoring
-```bash
-helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
-helm upgrade --install kube-prometheus-stack prometheus-community/kube-prometheus-stack \
-  -n monitoring --create-namespace -f monitoring/prometheus-values.yaml
-kubectl port-forward -n monitoring svc/kube-prometheus-stack-grafana 3001:80
-```
-Useful Grafana/PromQL queries:
-- `sum(rate(http_requests_total[1m])) by (handler)` — request rate
-- `histogram_quantile(0.95, sum(rate(http_request_duration_seconds_bucket[5m])) by (le))` — p95 latency
-- `sum(rate(http_requests_total{status="5xx"}[1m]))` — error rate
-
-### Load Testing & HPA Verification
-Generate concurrent traffic to observe metric spikes in Grafana and trigger HPA pod scaling:
-```bash
-# Linux / macOS / Git Bash:
-./scripts/load-test.sh
-
-# Windows PowerShell:
-.\scripts\load-test.ps1 -Url http://localhost:8000/api/health -Requests 1000 -Concurrency 15
-```
-
-## Troubleshooting exercises
-`troubleshooting/` has deliberately broken manifests to practice diagnosis:
-- **`broken-image.yaml`**: Demonstrates `ImagePullBackOff` / `ErrImagePull`.
-- **`broken-service.yaml`**: Demonstrates service with `<none>` endpoints due to selector mismatch.
-
-See the complete step-by-step diagnostic workflows in [troubleshooting/README.md](troubleshooting/README.md).
-
-## Screenshots & Verification Evidence
-
-### 1. StudyTrack Dashboard UI
-![Frontend Dashboard](docs/screenshots/01-frontend-dashboard.png)
-
-### 2. Swagger / OpenAPI Documentation (`/docs`)
-![Swagger UI](docs/screenshots/02-swagger-docs.png)
-
-### 3. Application Health Check (`/api/health`)
-![Health Check](docs/screenshots/03-health.png)
-
-### 4. Prometheus Metrics Endpoint (`/metrics`)
-![Metrics](docs/screenshots/04-metrics.png)
-
-## Repository layout
-```text
-backend/         FastAPI app, Alembic migrations, tests, Dockerfile
-frontend/        React + Vite UI, Nginx template, Dockerfile
-helm/            studytrack Helm chart (deployments, svc, ingress, HPA)
-k8s/             namespace manifest
-terraform/       AWS VPC + EKS Infrastructure as Code
-monitoring/      Prometheus & Grafana values
-troubleshooting/ Broken manifests and debugging scenarios
-scripts/         Load testing scripts (Bash & PowerShell)
-docs/            Screenshots, test evidence, and logs
-.github/         GitHub Actions CI/CD pipeline
-```
-
