@@ -1,5 +1,10 @@
 # StudyTrack — DevOps Final Capstone
 
+> 🌐 **Live Public AWS Deployment**: [http://a554166002e3d4c6bbb0bde1c641c9c1-147430934.ap-south-1.elb.amazonaws.com/](http://a554166002e3d4c6bbb0bde1c641c9c1-147430934.ap-south-1.elb.amazonaws.com/)  
+> ⚡ **Interactive Swagger REST API Docs**: [http://a554166002e3d4c6bbb0bde1c641c9c1-147430934.ap-south-1.elb.amazonaws.com/docs](http://a554166002e3d4c6bbb0bde1c641c9c1-147430934.ap-south-1.elb.amazonaws.com/docs)  
+> 📄 **Presentation Deck (Browser Viewable)**: [`demo/StudyTrack_DevOps_Capstone_Presentation.pdf`](demo/StudyTrack_DevOps_Capstone_Presentation.pdf)  
+> 📂 **GitHub Repository**: [https://github.com/shubh-aarambh/Study-Track](https://github.com/shubh-aarambh/Study-Track)
+
 StudyTrack is a cloud-native SaaS **academic coursework and deadline management system** built for the **Session 21 DevOps Final Capstone Project**. 
 
 Students can track assignments and coursework per academic subject, set deadlines and priorities, monitor real-time completion progress (0–100%), and view operational KPIs for total, in-progress, submitted, and overdue coursework.
@@ -104,7 +109,7 @@ Application → Git Commit → CI Pipeline → Docker Build → Trivy Security S
 ---
 
 ### 5. CI: Push to GitHub & Automated Tests Running
-- **Action**: Pushed commit to remote repository `shubh-aarambh/studytrack-devops-capstone`. GitHub Actions pipeline triggered automatically.
+- **Action**: Pushed commit to remote repository `shubh-aarambh/Study-Track`. GitHub Actions pipeline triggered automatically.
 - **Workflow Verification**:
   - `test` job: 12 unit & integration tests executed via `pytest` (**All 12 passed in 0.50s**), followed by Vite production bundling.
   - `build-scan-push` job: Multi-stage Docker builds and Trivy scanning.

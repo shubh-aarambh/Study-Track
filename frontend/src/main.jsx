@@ -522,7 +522,7 @@ function App() {
                 </div>
                 <div style={{ marginTop: '12px' }}>
                   <a
-                    href="https://github.com/shubh-aarambh/studytrack-devops-capstone/actions"
+                    href="https://github.com/shubh-aarambh/Study-Track/actions"
                     target="_blank"
                     rel="noreferrer"
                     className="btn btn-secondary"

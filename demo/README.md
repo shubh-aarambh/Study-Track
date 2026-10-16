@@ -1,5 +1,10 @@
 # StudyTrack — DevOps Final Capstone Demo
 
+> 🌐 **Live Public AWS Deployment**: [http://a554166002e3d4c6bbb0bde1c641c9c1-147430934.ap-south-1.elb.amazonaws.com/](http://a554166002e3d4c6bbb0bde1c641c9c1-147430934.ap-south-1.elb.amazonaws.com/)  
+> ⚡ **Interactive Swagger REST API Docs**: [http://a554166002e3d4c6bbb0bde1c641c9c1-147430934.ap-south-1.elb.amazonaws.com/docs](http://a554166002e3d4c6bbb0bde1c641c9c1-147430934.ap-south-1.elb.amazonaws.com/docs)  
+> 📄 **Presentation Deck (Browser Viewable)**: [`demo/StudyTrack_DevOps_Capstone_Presentation.pdf`](StudyTrack_DevOps_Capstone_Presentation.pdf)  
+> 📂 **GitHub Repository**: [https://github.com/shubh-aarambh/Study-Track](https://github.com/shubh-aarambh/Study-Track)
+
 Welcome to the **StudyTrack DevOps Capstone Demonstration**. This directory contains the complete verification suite, presentation slide deck, high-definition videos, and evidence screenshots for all 15 parts of **Session 21 / Final Demo**.
 
 ---
@@ -86,7 +91,7 @@ Welcome to the **StudyTrack DevOps Capstone Demonstration**. This directory cont
 ---
 
 ### 5. CI: GitHub Actions Automated Testing Pipeline
-- **Action**: Pushed commit to GitHub repository `shubh-aarambh/studytrack-devops-capstone`. GitHub Actions pipeline triggered automatically.
+- **Action**: Pushed commit to GitHub repository `shubh-aarambh/Study-Track`. GitHub Actions pipeline triggered automatically.
 - **Workflow Jobs**:
   - `test`: Setup Python 3.12, installed dependencies, ran `pytest` (12 tests passed in 0.50s), and validated Vite frontend production build.
   - `build-scan-push`: Multi-stage Docker builds, Trivy security scan, and push to GHCR.

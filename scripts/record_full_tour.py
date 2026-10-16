@@ -264,7 +264,7 @@ SUMMARY_HTML = """
             </div>
         </div>
         <div class="footer">
-            <span>Repository: github.com/shubh-aarambh/studytrack-devops-capstone</span>
+            <span>Repository: github.com/shubh-aarambh/Study-Track</span>
             <span>Cluster: studytrack-eks (v1.31) &bull; Region: ap-south-1</span>
         </div>
     </div>
