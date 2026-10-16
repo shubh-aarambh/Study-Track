@@ -20,11 +20,14 @@ Application → Git Commit → CI Pipeline → Docker Build → Trivy Security S
   *Executive and technical slide deck with architecture diagrams and screenshot evidence (opens directly in browser/GitHub without downloading).*
 - 📊 **PowerPoint Presentation Deck (PPTX)**: [`demo/StudyTrack_DevOps_Capstone_Presentation.pptx`](demo/StudyTrack_DevOps_Capstone_Presentation.pptx)  
   *Editable presentation source deck.*
-- 🎥 **Complete Project Tour Video (MP4 HD)**: [`demo/studytrack_full_tour.mp4`](demo/studytrack_full_tour.mp4)  
-  *Broadcast-grade HD video tour covering all 15 demo criteria (AWS Ingress ELB, StudyTrack UI, Swagger API, PostgreSQL, Prometheus & Grafana).*
+- 🎥 **Complete Project Tour Demonstration (In-Browser)**: [`demo/studytrack_tour.gif`](demo/studytrack_tour.gif)  
+  *Plays directly inside GitHub without downloading (covers AWS Ingress ELB, StudyTrack UI, Swagger API, PostgreSQL, Prometheus, and Grafana).*
 - 📸 **Demo Screenshots Suite**: [`demo/screenshots/`](demo/screenshots/)  
   *21 screenshots covering all 15 required demo criteria.*
 - 📘 **Dedicated Demo Walkthrough**: [`demo/README.md`](demo/README.md)
+
+### 🎬 Live Project Tour (Plays Directly on GitHub Without Downloading)
+![StudyTrack Full Project Tour](demo/studytrack_tour.gif)
 
 ---
 
@@ -37,7 +40,7 @@ Application → Git Commit → CI Pipeline → Docker Build → Trivy Security S
   - UI Overview: [`demo/screenshots/01-application-taskboard.png`](demo/screenshots/01-application-taskboard.png)
   - Create Modal: [`demo/screenshots/01-create-task-modal.png`](demo/screenshots/01-create-task-modal.png)
   - Active Task on Board: [`demo/screenshots/01-task-created-board.png`](demo/screenshots/01-task-created-board.png)
-  - Video Demonstration: [`demo/studytrack_full_tour.mp4`](demo/studytrack_full_tour.mp4)
+  - Video Demonstration: [`demo/studytrack_tour.gif`](demo/studytrack_tour.gif)
 
 ![StudyTrack Dashboard](demo/screenshots/01-task-created-board.png)
 
@@ -215,7 +218,7 @@ Application → Git Commit → CI Pipeline → Docker Build → Trivy Security S
 - **Evidence**:
   - Live Ingress App: [`demo/screenshots/12-ingress-live-app.png`](demo/screenshots/12-ingress-live-app.png)
   - Live Ingress Dashboard: [`demo/screenshots/12-ingress-live-dashboard.png`](demo/screenshots/12-ingress-live-dashboard.png)
-  - Video Demonstration: [`demo/studytrack_full_tour.mp4`](demo/studytrack_full_tour.mp4) (Scene 1: Live Ingress ELB)
+  - Video Demonstration: [`demo/studytrack_tour.gif`](demo/studytrack_tour.gif) (Scene 1: Live Ingress ELB)
 
 ![Live Ingress](demo/screenshots/12-ingress-live-app.png)
 
@@ -250,7 +253,7 @@ Application → Git Commit → CI Pipeline → Docker Build → Trivy Security S
   - Prometheus Query: [`demo/screenshots/14-prometheus-query.png`](demo/screenshots/14-prometheus-query.png)
   - Prometheus Targets: [`demo/screenshots/14-prometheus-targets.png`](demo/screenshots/14-prometheus-targets.png)
   - Grafana Dashboard: [`demo/screenshots/14-grafana-cluster-dashboard.png`](demo/screenshots/14-grafana-cluster-dashboard.png)
-  - Video Demonstration: [`demo/studytrack_full_tour.mp4`](demo/studytrack_full_tour.mp4) (Scenes 3 & 4: Prometheus & Grafana)
+  - Video Demonstration: [`demo/studytrack_tour.gif`](demo/studytrack_tour.gif) (Scenes 3 & 4: Prometheus & Grafana)
 
 ![Grafana Monitoring](demo/screenshots/14-grafana-cluster-dashboard.png)
 
@@ -302,7 +305,7 @@ Application → Git Commit → CI Pipeline → Docker Build → Trivy Security S
 ├── demo/                            # Final presentation, demo video, and screenshots
 │   ├── StudyTrack_DevOps_Capstone_Presentation.pdf
 │   ├── StudyTrack_DevOps_Capstone_Presentation.pptx
-│   ├── studytrack_full_tour.mp4
+│   ├── studytrack_tour.gif
 │   └── screenshots/
 └── README.md
 ```

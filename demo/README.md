@@ -10,10 +10,13 @@ Welcome to the **StudyTrack DevOps Capstone Demonstration**. This directory cont
   *Executive and technical slide deck with architecture diagrams and screenshot evidence (opens directly in browser/GitHub without downloading).*
 - **PowerPoint Presentation Deck (PPTX)**: [`demo/StudyTrack_DevOps_Capstone_Presentation.pptx`](StudyTrack_DevOps_Capstone_Presentation.pptx)  
   *Editable presentation source deck.*
-- **Complete Project Tour Video (MP4 HD)**: [`demo/studytrack_full_tour.mp4`](studytrack_full_tour.mp4)  
-  *Broadcast-grade HD video walkthrough covering all 15 project rubric criteria (Live AWS Ingress ELB, StudyTrack UI, Swagger API, PostgreSQL, Prometheus, and Grafana).*
+- **Complete Project Tour Demonstration (In-Browser)**: [`demo/studytrack_tour.gif`](studytrack_tour.gif)  
+  *Plays directly inside GitHub without downloading (covers AWS Ingress ELB, StudyTrack UI, Swagger API, PostgreSQL, Prometheus, and Grafana).*
 - **Evidence Screenshots**: [`demo/screenshots/`](screenshots/)  
   *21 high-definition screenshots covering all 15 parts.*
+
+### 🎬 Live Project Tour (Plays Directly on GitHub Without Downloading)
+![StudyTrack Full Project Tour](studytrack_tour.gif)
 
 ---
 
@@ -26,7 +29,7 @@ Welcome to the **StudyTrack DevOps Capstone Demonstration**. This directory cont
   - Dashboard Overview: `demo/screenshots/01-application-taskboard.png`
   - Task Creation Modal: `demo/screenshots/01-create-task-modal.png`
   - Created Task on Board: `demo/screenshots/01-task-created-board.png`
-  - Video Recording: [`demo/studytrack_full_tour.mp4`](studytrack_full_tour.mp4)
+  - Video Recording: [`demo/studytrack_tour.gif`](studytrack_tour.gif)
 
 ![StudyTrack UI](screenshots/01-task-created-board.png)
 
@@ -195,7 +198,7 @@ Welcome to the **StudyTrack DevOps Capstone Demonstration**. This directory cont
 - **Evidence**:
   - Live Ingress Web UI: `demo/screenshots/12-ingress-live-app.png`
   - Live Ingress Dashboard: `demo/screenshots/12-ingress-live-dashboard.png`
-  - Video Recording: [`demo/studytrack_full_tour.mp4`](studytrack_full_tour.mp4) (Scene 1: Live Ingress ELB)
+  - Video Recording: [`demo/studytrack_tour.gif`](studytrack_tour.gif) (Scene 1: Live Ingress ELB)
 
 ![Ingress Live](screenshots/12-ingress-live-app.png)
 
@@ -226,7 +229,7 @@ Welcome to the **StudyTrack DevOps Capstone Demonstration**. This directory cont
   - Prometheus Target Query: `demo/screenshots/14-prometheus-query.png`
   - Prometheus Targets: `demo/screenshots/14-prometheus-targets.png`
   - Grafana Compute Dashboard: `demo/screenshots/14-grafana-cluster-dashboard.png`
-  - Video Recording: [`demo/studytrack_full_tour.mp4`](studytrack_full_tour.mp4) (Scenes 3 & 4: Prometheus & Grafana)
+  - Video Recording: [`demo/studytrack_tour.gif`](studytrack_tour.gif) (Scenes 3 & 4: Prometheus & Grafana)
 
 ![Grafana Dashboard](screenshots/14-grafana-cluster-dashboard.png)
 
