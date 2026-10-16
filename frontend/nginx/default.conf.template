@@ -20,4 +20,8 @@ server {
   location /health {
     proxy_pass http://${BACKEND_HOST}/health;
   }
+
+  location /ready {
+    proxy_pass http://${BACKEND_HOST}/ready;
+  }
 }
