@@ -6,14 +6,12 @@ Welcome to the **StudyTrack DevOps Capstone Demonstration**. This directory cont
 
 ## Deliverables in `demo/`
 
-- **PowerPoint Presentation Deck**: [`demo/StudyTrack_DevOps_Capstone_Presentation.pptx`](StudyTrack_DevOps_Capstone_Presentation.pptx)  
-  *Executive and technical slide deck embedding all architecture diagrams, pipeline stages, and screenshot evidence.*
-- **Full HD Project Tour Video (MP4)**: [`demo/studytrack_full_tour.mp4`](studytrack_full_tour.mp4)  
-  *Complete, broadcast-grade video walkthrough of all 15 project rubric criteria (Application, Swagger API, PostgreSQL, Prometheus, Grafana, and live Ingress).*
-- **Full Project Tour Video (WebM)**: [`demo/studytrack_full_tour.webm`](studytrack_full_tour.webm)  
-  *Native high-definition WebM recording of the complete cloud architecture and live application.*
-- **Animated Video Preview**: [`demo/studytrack_full_demo.webp`](studytrack_full_demo.webp)  
-  *Lightweight animated preview designed for inline markdown viewers.*
+- **Presentation Deck (PDF - View Directly in Browser)**: [`demo/StudyTrack_DevOps_Capstone_Presentation.pdf`](StudyTrack_DevOps_Capstone_Presentation.pdf)  
+  *Executive and technical slide deck with architecture diagrams and screenshot evidence (opens directly in browser/GitHub without downloading).*
+- **PowerPoint Presentation Deck (PPTX)**: [`demo/StudyTrack_DevOps_Capstone_Presentation.pptx`](StudyTrack_DevOps_Capstone_Presentation.pptx)  
+  *Editable presentation source deck.*
+- **Complete Project Tour Video (MP4 HD)**: [`demo/studytrack_full_tour.mp4`](studytrack_full_tour.mp4)  
+  *Broadcast-grade HD video walkthrough covering all 15 project rubric criteria (Live AWS Ingress ELB, StudyTrack UI, Swagger API, PostgreSQL, Prometheus, and Grafana).*
 - **Evidence Screenshots**: [`demo/screenshots/`](screenshots/)  
   *21 high-definition screenshots covering all 15 parts.*
 
@@ -28,7 +26,7 @@ Welcome to the **StudyTrack DevOps Capstone Demonstration**. This directory cont
   - Dashboard Overview: `demo/screenshots/01-application-taskboard.png`
   - Task Creation Modal: `demo/screenshots/01-create-task-modal.png`
   - Created Task on Board: `demo/screenshots/01-task-created-board.png`
-  - Video Recording: [`demo/studytrack_full_tour.mp4`](studytrack_full_tour.mp4) (WebM: [`demo/studytrack_full_tour.webm`](studytrack_full_tour.webm))
+  - Video Recording: [`demo/studytrack_full_tour.mp4`](studytrack_full_tour.mp4)
 
 ![StudyTrack UI](screenshots/01-task-created-board.png)
 

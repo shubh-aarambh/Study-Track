@@ -16,14 +16,12 @@ Application → Git Commit → CI Pipeline → Docker Build → Trivy Security S
 
 ## 🎯 Capstone Deliverables & Demo Assets
 
-- 📊 **PowerPoint Presentation Deck**: [`demo/StudyTrack_DevOps_Capstone_Presentation.pptx`](demo/StudyTrack_DevOps_Capstone_Presentation.pptx)  
-  *Comprehensive 9-slide technical and executive slide deck with embedded screenshots and architecture diagrams.*
-- 🎥 **Full Project Tour Video (MP4 HD)**: [`demo/studytrack_full_tour.mp4`](demo/studytrack_full_tour.mp4)  
+- 📄 **Presentation Deck (PDF - View Directly in Browser)**: [`demo/StudyTrack_DevOps_Capstone_Presentation.pdf`](demo/StudyTrack_DevOps_Capstone_Presentation.pdf)  
+  *Executive and technical slide deck with architecture diagrams and screenshot evidence (opens directly in browser/GitHub without downloading).*
+- 📊 **PowerPoint Presentation Deck (PPTX)**: [`demo/StudyTrack_DevOps_Capstone_Presentation.pptx`](demo/StudyTrack_DevOps_Capstone_Presentation.pptx)  
+  *Editable presentation source deck.*
+- 🎥 **Complete Project Tour Video (MP4 HD)**: [`demo/studytrack_full_tour.mp4`](demo/studytrack_full_tour.mp4)  
   *Broadcast-grade HD video tour covering all 15 demo criteria (AWS Ingress ELB, StudyTrack UI, Swagger API, PostgreSQL, Prometheus & Grafana).*
-- 📹 **Full Project Tour Video (WebM)**: [`demo/studytrack_full_tour.webm`](demo/studytrack_full_tour.webm)  
-  *High-definition native WebM recording of the complete cloud architecture and live application.*
-- 🎞️ **Animated Project Tour Preview**: [`demo/studytrack_full_demo.webp`](demo/studytrack_full_demo.webp)  
-  *Smooth animated preview for inline markdown viewers and repository previews.*
 - 📸 **Demo Screenshots Suite**: [`demo/screenshots/`](demo/screenshots/)  
   *21 screenshots covering all 15 required demo criteria.*
 - 📘 **Dedicated Demo Walkthrough**: [`demo/README.md`](demo/README.md)
@@ -39,7 +37,7 @@ Application → Git Commit → CI Pipeline → Docker Build → Trivy Security S
   - UI Overview: [`demo/screenshots/01-application-taskboard.png`](demo/screenshots/01-application-taskboard.png)
   - Create Modal: [`demo/screenshots/01-create-task-modal.png`](demo/screenshots/01-create-task-modal.png)
   - Active Task on Board: [`demo/screenshots/01-task-created-board.png`](demo/screenshots/01-task-created-board.png)
-  - Video Demonstration: [`demo/studytrack_full_tour.mp4`](demo/studytrack_full_tour.mp4) (WebM: [`demo/studytrack_full_tour.webm`](demo/studytrack_full_tour.webm))
+  - Video Demonstration: [`demo/studytrack_full_tour.mp4`](demo/studytrack_full_tour.mp4)
 
 ![StudyTrack Dashboard](demo/screenshots/01-task-created-board.png)
 
@@ -301,11 +299,10 @@ Application → Git Commit → CI Pipeline → Docker Build → Trivy Security S
 ├── monitoring/                      # Prometheus and Grafana Helm values
 ├── troubleshooting/                 # Chaos engineering manifests and runbooks
 ├── scripts/                         # Load testing scripts and automation tools
-├── demo/                            # Final presentation, demo videos, and screenshots
+├── demo/                            # Final presentation, demo video, and screenshots
+│   ├── StudyTrack_DevOps_Capstone_Presentation.pdf
 │   ├── StudyTrack_DevOps_Capstone_Presentation.pptx
 │   ├── studytrack_full_tour.mp4
-│   ├── studytrack_full_tour.webm
-│   ├── studytrack_full_demo.webp
 │   └── screenshots/
 └── README.md
 ```
