@@ -30,11 +30,13 @@ def root():
 
 
 @app.get("/health")
+@app.get("/api/health")
 def health():
     return {"status": "UP"}
 
 
 @app.get("/ready")
+@app.get("/api/ready")
 def ready(db: Session = Depends(get_db)):
     db.execute(select(func.count(Assignment.id)))
     return {"status": "READY"}

@@ -9,10 +9,12 @@ def make(client, **overrides):
 
 def test_health(client):
     assert client.get("/health").json() == {"status": "UP"}
+    assert client.get("/api/health").json() == {"status": "UP"}
 
 
 def test_ready_checks_database(client):
     assert client.get("/ready").json() == {"status": "READY"}
+    assert client.get("/api/ready").json() == {"status": "READY"}
 
 
 def test_root(client):
