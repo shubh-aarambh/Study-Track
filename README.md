@@ -112,6 +112,16 @@ Useful Grafana/PromQL queries:
 - `histogram_quantile(0.95, sum(rate(http_request_duration_seconds_bucket[5m])) by (le))` — p95 latency
 - `sum(rate(http_requests_total{status="5xx"}[1m]))` — error rate
 
+### Load Testing & HPA Verification
+Generate concurrent traffic to observe metric spikes in Grafana and trigger HPA pod scaling:
+```bash
+# Linux / macOS / Git Bash:
+./scripts/load-test.sh
+
+# Windows PowerShell:
+.\scripts\load-test.ps1 -Url http://localhost:8000/api/health -Requests 1000 -Concurrency 15
+```
+
 ## Troubleshooting exercises
 `troubleshooting/` has deliberately broken manifests (bad image tag → `ImagePullBackOff`, wrong service selector → no endpoints).
 
