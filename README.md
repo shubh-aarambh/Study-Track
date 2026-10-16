@@ -25,8 +25,10 @@ Application → Git Commit → CI Pipeline → Docker Build → Trivy Security S
   *Executive and technical slide deck with architecture diagrams and screenshot evidence (opens directly in browser/GitHub without downloading).*
 - 📊 **PowerPoint Presentation Deck (PPTX)**: [`demo/StudyTrack_DevOps_Capstone_Presentation.pptx`](demo/StudyTrack_DevOps_Capstone_Presentation.pptx)  
   *Editable presentation source deck.*
-- 🎥 **Complete Project Tour Demonstration (In-Browser)**: [`demo/studytrack_tour.gif`](demo/studytrack_tour.gif)  
+- 🎥 **Live Project Tour Demonstration (In-Browser)**: [`demo/studytrack_tour.gif`](demo/studytrack_tour.gif)  
   *Plays directly inside GitHub without downloading (covers AWS Ingress ELB, StudyTrack UI, Swagger API, PostgreSQL, Prometheus, and Grafana).*
+- 📹 **Full HD Video Recording (MP4)**: [`demo/studytrack_full_tour.mp4`](demo/studytrack_full_tour.mp4)  
+  *Broadcast-grade 720p HD MP4 video recording (18.5 MB, 1,884 frames).*
 - 📸 **Demo Screenshots Suite**: [`demo/screenshots/`](demo/screenshots/)  
   *21 screenshots covering all 15 required demo criteria.*
 - 📘 **Dedicated Demo Walkthrough**: [`demo/README.md`](demo/README.md)
@@ -45,7 +47,7 @@ Application → Git Commit → CI Pipeline → Docker Build → Trivy Security S
   - UI Overview: [`demo/screenshots/01-application-taskboard.png`](demo/screenshots/01-application-taskboard.png)
   - Create Modal: [`demo/screenshots/01-create-task-modal.png`](demo/screenshots/01-create-task-modal.png)
   - Active Task on Board: [`demo/screenshots/01-task-created-board.png`](demo/screenshots/01-task-created-board.png)
-  - Video Demonstration: [`demo/studytrack_tour.gif`](demo/studytrack_tour.gif)
+  - Video Demonstration: [`demo/studytrack_tour.gif`](demo/studytrack_tour.gif) (Full HD MP4: [`demo/studytrack_full_tour.mp4`](demo/studytrack_full_tour.mp4))
 
 ![StudyTrack Dashboard](demo/screenshots/01-task-created-board.png)
 
@@ -311,6 +313,7 @@ Application → Git Commit → CI Pipeline → Docker Build → Trivy Security S
 │   ├── StudyTrack_DevOps_Capstone_Presentation.pdf
 │   ├── StudyTrack_DevOps_Capstone_Presentation.pptx
 │   ├── studytrack_tour.gif
+│   ├── studytrack_full_tour.mp4
 │   └── screenshots/
 └── README.md
 ```

@@ -375,6 +375,9 @@ def create_deck(output_path):
                  "🎬 demo/studytrack_tour.gif",
                  "   • In-browser animated tour (plays directly on GitHub without downloading)",
                  "",
+                 "📹 demo/studytrack_full_tour.mp4",
+                 "   • Broadcast-grade 720p HD MP4 video recording (18.5 MB)",
+                 "",
                  "🖼️ demo/screenshots/",
                  "   • 21 High-definition screenshots covering all 15 rubric criteria"],
                 "DEMO ARTIFACTS", ACCENT_BLUE)
