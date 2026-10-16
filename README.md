@@ -123,13 +123,37 @@ Generate concurrent traffic to observe metric spikes in Grafana and trigger HPA 
 ```
 
 ## Troubleshooting exercises
-`troubleshooting/` has deliberately broken manifests (bad image tag → `ImagePullBackOff`, wrong service selector → no endpoints).
+`troubleshooting/` has deliberately broken manifests to practice diagnosis:
+- **`broken-image.yaml`**: Demonstrates `ImagePullBackOff` / `ErrImagePull`.
+- **`broken-service.yaml`**: Demonstrates service with `<none>` endpoints due to selector mismatch.
+
+See the complete step-by-step diagnostic workflows in [troubleshooting/README.md](troubleshooting/README.md).
+
+## Screenshots & Verification Evidence
+
+### 1. StudyTrack Dashboard UI
+![Frontend Dashboard](docs/screenshots/01-frontend-dashboard.png)
+
+### 2. Swagger / OpenAPI Documentation (`/docs`)
+![Swagger UI](docs/screenshots/02-swagger-docs.png)
+
+### 3. Application Health Check (`/api/health`)
+![Health Check](docs/screenshots/03-health.png)
+
+### 4. Prometheus Metrics Endpoint (`/metrics`)
+![Metrics](docs/screenshots/04-metrics.png)
 
 ## Repository layout
 ```text
-backend/   FastAPI app, Alembic migrations, tests, Dockerfile
-frontend/  React + Vite UI, Nginx template, Dockerfile
-helm/      studytrack Helm chart      k8s/  namespace manifest
-terraform/ AWS VPC + EKS              monitoring/  Prometheus/Grafana values
-docs/      screenshots and evidence   .github/workflows/  CI/CD
+backend/         FastAPI app, Alembic migrations, tests, Dockerfile
+frontend/        React + Vite UI, Nginx template, Dockerfile
+helm/            studytrack Helm chart (deployments, svc, ingress, HPA)
+k8s/             namespace manifest
+terraform/       AWS VPC + EKS Infrastructure as Code
+monitoring/      Prometheus & Grafana values
+troubleshooting/ Broken manifests and debugging scenarios
+scripts/         Load testing scripts (Bash & PowerShell)
+docs/            Screenshots, test evidence, and logs
+.github/         GitHub Actions CI/CD pipeline
 ```
+
