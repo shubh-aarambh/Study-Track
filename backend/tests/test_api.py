@@ -85,3 +85,22 @@ def test_metrics_endpoint(client):
     client.get("/health")
     body = client.get("/metrics").text
     assert "http_requests_total" in body
+
+
+def test_academic_analytics_endpoint(client):
+    today = date.today()
+    tomorrow = (today + timedelta(days=1)).isoformat()
+    yesterday = (today - timedelta(days=1)).isoformat()
+    make(client, title="DevOps Cloud", subject="Cloud Computing", due_date=tomorrow, priority="HIGH")
+    make(client, title="DB Migration", subject="Databases", due_date=yesterday, status="SUBMITTED")
+    res = client.get("/api/assignments/analytics")
+    assert res.status_code == 200
+    data = res.json()
+    assert data["total_assignments"] == 2
+    assert data["subjects_count"] == 2
+    assert data["subject_breakdown"]["Cloud Computing"] == 1
+    assert data["subject_breakdown"]["Databases"] == 1
+    assert data["completion_rate"] == 50
+    assert data["next_deadline"] == tomorrow
+    assert "study_status" in data
+

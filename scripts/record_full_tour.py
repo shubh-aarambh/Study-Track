@@ -174,8 +174,8 @@ SUMMARY_HTML = """
         <div class="grid">
             <div class="card">
                 <div class="card-num">Part 1 &bull; Application</div>
-                <div class="card-title">TaskBoard React App</div>
-                <div class="card-desc">Modern glassmorphic UI with task management and real-time statistics.</div>
+                <div class="card-title">StudyTrack React App</div>
+                <div class="card-desc">Modern glassmorphic UI with assignment management, syllabus progress, and real-time statistics.</div>
                 <div class="card-status">&#10003; Live on AWS ELB</div>
             </div>
             <div class="card">
@@ -228,7 +228,7 @@ SUMMARY_HTML = """
             </div>
             <div class="card">
                 <div class="card-num">Part 10 &bull; Kubernetes</div>
-                <div class="card-title">Namespace taskboard</div>
+                <div class="card-title">Production Workloads</div>
                 <div class="card-desc">Deployments, Services, ConfigMaps, and zero-downtime rolling updates.</div>
                 <div class="card-status">&#10003; 5 Pods Running</div>
             </div>

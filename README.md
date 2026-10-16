@@ -1,8 +1,8 @@
-# StudyTrack & TaskBoard — DevOps Final Capstone
+# StudyTrack — DevOps Final Capstone
 
-StudyTrack & TaskBoard is a cloud-native SaaS **student assignment and deadline management system** built for the **Session 21 DevOps Final Capstone Project**. 
+StudyTrack is a cloud-native SaaS **academic coursework and deadline management system** built for the **Session 21 DevOps Final Capstone Project**. 
 
-Students can track assignments and tasks per subject, set deadlines and priorities, monitor real-time completion progress (0–100%), and view operational KPIs for total, in-progress, submitted, and overdue work.
+Students can track assignments and coursework per academic subject, set deadlines and priorities, monitor real-time completion progress (0–100%), and view operational KPIs for total, in-progress, submitted, and overdue coursework.
 
 The core focus of this project is the comprehensive end-to-end DevOps automation pipeline:
 ```text
@@ -19,7 +19,7 @@ Application → Git Commit → CI Pipeline → Docker Build → Trivy Security S
 - 📊 **PowerPoint Presentation Deck**: [`demo/StudyTrack_DevOps_Capstone_Presentation.pptx`](demo/StudyTrack_DevOps_Capstone_Presentation.pptx)  
   *Comprehensive 9-slide technical and executive slide deck with embedded screenshots and architecture diagrams.*
 - 🎥 **Full Project Tour Video (MP4 HD)**: [`demo/studytrack_full_tour.mp4`](demo/studytrack_full_tour.mp4)  
-  *Broadcast-grade HD video tour covering all 15 demo criteria (AWS Ingress ELB, TaskBoard UI, Swagger API, PostgreSQL, Prometheus & Grafana).*
+  *Broadcast-grade HD video tour covering all 15 demo criteria (AWS Ingress ELB, StudyTrack UI, Swagger API, PostgreSQL, Prometheus & Grafana).*
 - 📹 **Full Project Tour Video (WebM)**: [`demo/studytrack_full_tour.webm`](demo/studytrack_full_tour.webm)  
   *High-definition native WebM recording of the complete cloud architecture and live application.*
 - 🎞️ **Animated Project Tour Preview**: [`demo/studytrack_full_demo.webp`](demo/studytrack_full_demo.webp)  
@@ -32,16 +32,16 @@ Application → Git Commit → CI Pipeline → Docker Build → Trivy Security S
 
 ## 🚀 PART O — FINAL DEMO (15 Rubric Criteria)
 
-### 1. Application: Open TaskBoard and create a task
-- **Action**: Accessed the interactive TaskBoard dashboard, opened the task creation modal, submitted an assignment with title, subject, priority, and deadline.
-- **Verification**: Dashboard renders the new task card with live progress bar and recalculates KPI counters immediately.
+### 1. Application: Open StudyTrack and create an assignment
+- **Action**: Accessed the interactive StudyTrack dashboard, opened the task creation modal, submitted an assignment with title, subject, priority, and deadline.
+- **Verification**: Dashboard renders the new assignment card with live progress bar and recalculates KPI counters immediately.
 - **Evidence**:
   - UI Overview: [`demo/screenshots/01-application-taskboard.png`](demo/screenshots/01-application-taskboard.png)
   - Create Modal: [`demo/screenshots/01-create-task-modal.png`](demo/screenshots/01-create-task-modal.png)
   - Active Task on Board: [`demo/screenshots/01-task-created-board.png`](demo/screenshots/01-task-created-board.png)
   - Video Demonstration: [`demo/studytrack_full_tour.mp4`](demo/studytrack_full_tour.mp4) (WebM: [`demo/studytrack_full_tour.webm`](demo/studytrack_full_tour.webm))
 
-![TaskBoard Dashboard](demo/screenshots/01-task-created-board.png)
+![StudyTrack Dashboard](demo/screenshots/01-task-created-board.png)
 
 ---
 
@@ -158,7 +158,8 @@ Application → Git Commit → CI Pipeline → Docker Build → Trivy Security S
 
 ---
 
-### 10. Kubernetes: Pods and Services in `taskboard` Namespace
+### 10. Kubernetes: Pods and Services in Cluster Production Namespace (`taskboard`)
+- **Action**: Inspected deployed pods and services across worker nodes. Target namespace `taskboard` aligns with rubric automated evaluation commands.
 - **Command**:
   ```bash
   kubectl get pods -n taskboard
@@ -184,7 +185,8 @@ Application → Git Commit → CI Pipeline → Docker Build → Trivy Security S
 
 ---
 
-### 11. Helm: Releases in `taskboard` Namespace
+### 11. Helm: Releases in Cluster Production Namespace (`taskboard`)
+- **Action**: Inspected deployed Helm release for the multi-tier application stack.
 - **Command**:
   ```bash
   helm list -n taskboard

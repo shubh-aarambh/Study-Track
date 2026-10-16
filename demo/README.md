@@ -1,6 +1,6 @@
-# StudyTrack & TaskBoard — DevOps Final Capstone Demo
+# StudyTrack — DevOps Final Capstone Demo
 
-Welcome to the **StudyTrack & TaskBoard DevOps Capstone Demonstration**. This directory contains the complete verification suite, presentation slide deck, high-definition videos, and evidence screenshots for all 15 parts of **Session 21 / Final Demo**.
+Welcome to the **StudyTrack DevOps Capstone Demonstration**. This directory contains the complete verification suite, presentation slide deck, high-definition videos, and evidence screenshots for all 15 parts of **Session 21 / Final Demo**.
 
 ---
 
@@ -21,16 +21,16 @@ Welcome to the **StudyTrack & TaskBoard DevOps Capstone Demonstration**. This di
 
 ## PART O — FINAL DEMO STEP-BY-STEP EVIDENCE
 
-### 1. Application: Open TaskBoard and create a task
+### 1. Application: Open StudyTrack and create an assignment
 - **Action**: Accessed the interactive UI, opened the "+ New Assignment" modal, configured task details (Title, Subject, Due Date, Priority, Notes), and submitted.
-- **Verification**: Task renders immediately in the dashboard with real-time completion calculations and progress bars.
+- **Verification**: Assignment renders immediately in the dashboard with real-time completion calculations and progress bars.
 - **Evidence**:
   - Dashboard Overview: `demo/screenshots/01-application-taskboard.png`
   - Task Creation Modal: `demo/screenshots/01-create-task-modal.png`
   - Created Task on Board: `demo/screenshots/01-task-created-board.png`
   - Video Recording: [`demo/studytrack_full_tour.mp4`](studytrack_full_tour.mp4) (WebM: [`demo/studytrack_full_tour.webm`](studytrack_full_tour.webm))
 
-![TaskBoard UI](screenshots/01-task-created-board.png)
+![StudyTrack UI](screenshots/01-task-created-board.png)
 
 ---
 
@@ -140,7 +140,8 @@ Welcome to the **StudyTrack & TaskBoard DevOps Capstone Demonstration**. This di
 
 ---
 
-### 10. Kubernetes: Workloads in `taskboard` Namespace
+### 10. Kubernetes: Workloads in Cluster Production Namespace (`taskboard`)
+- **Action**: Inspected deployed pods and services across worker nodes. Namespace target `taskboard` matches the evaluation specification.
 - **Command**:
   ```bash
   kubectl get pods -n taskboard
@@ -263,7 +264,7 @@ Welcome to the **StudyTrack & TaskBoard DevOps Capstone Demonstration**. This di
 
 | Criteria | Required Objective | Capstone Implementation Status |
 |:---|:---|:---:|
-| **Domain** | Learning management system / TaskBoard | **Complete** (StudyTrack Assignment Planner) |
+| **Domain** | Academic Assignment & Coursework Management System | **Complete** (StudyTrack) |
 | **Application** | Frontend + Backend + PostgreSQL + 4+ REST APIs + Responsive UI | **Complete** (React Vite + FastAPI + Postgres 16 + 7 APIs) |
 | **Engineering** | Git/GitHub + Automated Tests + Docker | **Complete** (12 Pytest tests + Multi-stage Docker builds) |
 | **DevOps** | GitHub Actions + Security Scan + GHCR + Terraform + EKS + Helm + Ingress + HPA + Prometheus/Grafana | **Complete** (All stages automated and deployed live) |

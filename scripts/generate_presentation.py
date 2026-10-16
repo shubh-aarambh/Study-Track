@@ -98,7 +98,7 @@ def create_deck(output_path):
     p.space_after = Pt(12)
 
     p = tf1.add_paragraph()
-    p.text = "StudyTrack & TaskBoard"
+    p.text = "StudyTrack"
     p.font.size = Pt(38)
     p.font.bold = True
     p.font.color.rgb = TEXT_LIGHT
@@ -110,7 +110,7 @@ def create_deck(output_path):
     p.space_after = Pt(24)
 
     p = tf1.add_paragraph()
-    p.text = "Candidate: shubh-aarambh  |  Domain: Learning Management System & TaskBoard"
+    p.text = "Candidate: shubh-aarambh  |  Domain: Academic Coursework & Deadline Management System"
     p.font.size = Pt(13)
     p.font.bold = True
     p.font.color.rgb = ACCENT_GREEN
@@ -153,7 +153,7 @@ def create_deck(output_path):
 
     create_card(s2, Inches(8.8), Inches(1.8), Inches(3.6), Inches(5.1), 
                 "Phase 3: Delivery & SRE",
-                ["Helm packaging with values for taskboard namespace",
+                ["Helm packaging with values for production cluster namespace",
                  "NGINX Ingress Controller with AWS ELB integration",
                  "Horizontal Pod Autoscaler (HPA) targeting 60% CPU",
                  "Prometheus metrics scraping (/metrics endpoint)",
@@ -172,8 +172,8 @@ def create_deck(output_path):
     add_header(s3, "Part 1 & 2 — Application UI & FastAPI Swagger REST API Suite")
 
     create_card(s3, Inches(0.8), Inches(1.8), Inches(5.6), Inches(2.5),
-                "1. StudyTrack TaskBoard UI",
-                ["Modern glassmorphism UI with live task/assignment tracking",
+                "1. StudyTrack Academic Workspace UI",
+                ["Modern glassmorphism UI with live assignment & deadline tracking",
                  "Status columns: PENDING, IN_PROGRESS, SUBMITTED",
                  "Real-time completion percentage calculations and progress bars",
                  "Interactive modal for task creation with validation"],
@@ -202,7 +202,7 @@ def create_deck(output_path):
 
     create_card(s4, Inches(0.8), Inches(1.8), Inches(5.6), Inches(2.5),
                 "3. PostgreSQL Relational Persistence",
-                ["Stateful workload deployed in Kubernetes taskboard namespace",
+                ["Stateful workload deployed in Kubernetes production namespace",
                  "SQLAlchemy ORM with strict Pydantic schemas",
                  "Persistent tasks verified directly via psql CLI in pod",
                  "Columns: id, title, subject, priority, status, progress, created_at"],
@@ -268,7 +268,7 @@ def create_deck(output_path):
 
     create_card(s6, Inches(0.8), Inches(4.5), Inches(5.6), Inches(2.4),
                 "10 & 11. Kubernetes & Helm Deployment",
-                ["Namespace taskboard: backend (2 replicas), frontend (2 replicas), postgres (1)",
+                ["Production Workloads: backend (2 replicas), frontend (2 replicas), postgres (1)",
                  "Helm chart: helm/studytrack with values overriding image tags",
                  "ClusterIP services for secure internal communication",
                  "Automated rolling upgrades with zero service downtime"],
@@ -347,7 +347,7 @@ def create_deck(output_path):
 
     create_card(s9, Inches(0.8), Inches(1.8), Inches(5.6), Inches(5.1),
                 "Project Verification Checklist",
-                ["✓ 1. Application: StudyTrack / TaskBoard UI interactive and responsive",
+                ["✓ 1. Application: StudyTrack Academic UI interactive and responsive",
                  "✓ 2. API: FastAPI OpenAPI /docs with full CRUD endpoints verified",
                  "✓ 3. Database: PostgreSQL stateful storage with persistent rows",
                  "✓ 4. Git: Version-controlled commits on branch 'main'",
@@ -356,7 +356,7 @@ def create_deck(output_path):
                  "✓ 7. Security: Trivy scanner verified with 0 CVEs",
                  "✓ 8. Registry: Published to GitHub Container Registry (GHCR)",
                  "✓ 9. Terraform: Automated AWS VPC + EKS cluster in ap-south-1",
-                 "✓ 10. Kubernetes: All pods & services running in taskboard namespace",
+                 "✓ 10. Kubernetes: All pods & services running in production cluster namespace",
                  "✓ 11. Helm: Helm chart deployed with zero-downtime upgrades",
                  "✓ 12. Ingress: AWS ELB public routing with live browser demo",
                  "✓ 13. HPA: Horizontal Pod Autoscaler active with CPU utilization metrics",

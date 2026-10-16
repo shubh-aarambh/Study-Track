@@ -14,6 +14,7 @@ function App() {
   const [activeTab, setActiveTab] = useState('DASHBOARD');
   const [items, setItems] = useState([]);
   const [stats, setStats] = useState(EMPTY_STATS);
+  const [analytics, setAnalytics] = useState(null);
   const [filterStatus, setFilterStatus] = useState('ALL');
   const [filterSubject, setFilterSubject] = useState('ALL');
   const [searchQuery, setSearchQuery] = useState('');
@@ -33,12 +34,14 @@ function App() {
 
   const load = async () => {
     try {
-      const [resAssignments, resStats] = await Promise.all([
+      const [resAssignments, resStats, resAnalytics] = await Promise.all([
         fetch(`${API}/assignments`),
         fetch(`${API}/assignments/stats`),
+        fetch(`${API}/assignments/analytics`).catch(() => null),
       ]);
       if (resAssignments.ok) setItems(await resAssignments.json());
       if (resStats.ok) setStats(await resStats.json());
+      if (resAnalytics && resAnalytics.ok) setAnalytics(await resAnalytics.json());
 
       // Check health & readiness
       const [resHealth, resReady] = await Promise.all([
@@ -269,7 +272,51 @@ function App() {
 
         {/* TAB 1: DASHBOARD */}
         {activeTab === 'DASHBOARD' && (
-          <section className="content-grid">
+          <>
+            {analytics && (
+              <div style={{
+                background: 'linear-gradient(135deg, rgba(30, 41, 59, 0.7) 0%, rgba(15, 23, 42, 0.8) 100%)',
+                border: '1px solid rgba(99, 102, 241, 0.25)',
+                borderRadius: '12px',
+                padding: '16px 20px',
+                marginBottom: '20px',
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                flexWrap: 'wrap',
+                gap: '12px'
+              }}>
+                <div>
+                  <div style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.08em', color: '#818cf8', fontWeight: 700 }}>
+                    🎓 Academic Coursework & Study Insights
+                  </div>
+                  <div style={{ fontSize: '15px', fontWeight: 600, color: '#f8fafc', marginTop: '3px' }}>
+                    {analytics.study_status}
+                  </div>
+                  <div style={{ fontSize: '12px', color: '#94a3b8', marginTop: '2px' }}>
+                    Syllabus completion: <b style={{ color: '#34d399' }}>{analytics.completion_rate}%</b> across <b>{analytics.subjects_count}</b> courses
+                    {analytics.high_priority_pending > 0 && ` • ⚠️ ${analytics.high_priority_pending} urgent items pending`}
+                    {analytics.next_deadline && ` • Nearest deadline: ${fmtDate(analytics.next_deadline)}`}
+                  </div>
+                </div>
+                <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+                  {Object.entries(analytics.subject_breakdown || {}).map(([subj, count]) => (
+                    <span key={subj} style={{
+                      background: 'rgba(99, 102, 241, 0.15)',
+                      border: '1px solid rgba(99, 102, 241, 0.3)',
+                      color: '#c7d2fe',
+                      padding: '4px 10px',
+                      borderRadius: '9999px',
+                      fontSize: '11px',
+                      fontWeight: 600
+                    }}>
+                      {subj}: {count}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
+            <section className="content-grid">
             <div className="panel">
               <div className="panel-head">
                 <div>
@@ -320,7 +367,8 @@ function App() {
                 <div className="empty">No pending deadlines right now. Enjoy the calm!</div>
               )}
             </aside>
-          </section>
+            </section>
+          </>
         )}
 
         {/* TAB 2: DETAILED ASSIGNMENTS */}

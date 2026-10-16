@@ -39,3 +39,14 @@ class StatsOut(BaseModel):
     submitted: int
     overdue: int
     avgProgress: int
+
+
+class AcademicAnalyticsOut(BaseModel):
+    total_assignments: int
+    subjects_count: int
+    subject_breakdown: dict[str, int]
+    completion_rate: int
+    high_priority_pending: int
+    next_deadline: date | None
+    study_status: str
+

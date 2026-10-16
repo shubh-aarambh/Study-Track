@@ -10,7 +10,7 @@ from sqlalchemy.orm import Session
 from .config import settings
 from .db import Base, engine, get_db
 from .models import Assignment
-from .schemas import AssignmentCreate, AssignmentOut, AssignmentUpdate, StatsOut
+from .schemas import AcademicAnalyticsOut, AssignmentCreate, AssignmentOut, AssignmentUpdate, StatsOut
 
 @asynccontextmanager
 async def lifespan(_app: FastAPI):
@@ -68,6 +68,62 @@ def stats(db: Session = Depends(get_db)):
         overdue=overdue or 0,
         avgProgress=int(round(avg)),
     )
+
+
+@app.get("/api/assignments/analytics", response_model=AcademicAnalyticsOut)
+def academic_analytics(db: Session = Depends(get_db)):
+    assignments = list(db.scalars(select(Assignment)))
+    total = len(assignments)
+    if total == 0:
+        return AcademicAnalyticsOut(
+            total_assignments=0,
+            subjects_count=0,
+            subject_breakdown={},
+            completion_rate=0,
+            high_priority_pending=0,
+            next_deadline=None,
+            study_status="No assignments recorded yet",
+        )
+    subjects: dict[str, int] = {}
+    submitted = 0
+    high_pri_pending = 0
+    upcoming_dates = []
+    today = date.today()
+    overdue_count = 0
+    for a in assignments:
+        subj = a.subject or "General"
+        subjects[subj] = subjects.get(subj, 0) + 1
+        if a.status == "SUBMITTED":
+            submitted += 1
+        else:
+            if a.priority in ("HIGH", "URGENT"):
+                high_pri_pending += 1
+            if a.due_date:
+                if a.due_date < today:
+                    overdue_count += 1
+                else:
+                    upcoming_dates.append(a.due_date)
+    upcoming_dates.sort()
+    next_due = upcoming_dates[0] if upcoming_dates else None
+    comp_rate = int(round((submitted / total) * 100))
+    if overdue_count > 0:
+        status_text = f"Action Required: {overdue_count} overdue assignment(s)"
+    elif comp_rate >= 80:
+        status_text = "Exemplary: High syllabus completion rate"
+    elif comp_rate >= 40:
+        status_text = "On Track: Steady coursework progression"
+    else:
+        status_text = "Active Sprint: Initial semester planning"
+    return AcademicAnalyticsOut(
+        total_assignments=total,
+        subjects_count=len(subjects),
+        subject_breakdown=subjects,
+        completion_rate=comp_rate,
+        high_priority_pending=high_pri_pending,
+        next_deadline=next_due,
+        study_status=status_text,
+    )
+
 
 
 @app.get("/api/assignments/{assignment_id}", response_model=AssignmentOut)
